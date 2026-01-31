@@ -1,0 +1,126 @@
+/* Reset bàsic */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #eef2f7, #f8fafc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827;
+}
+
+/* Contenidor principal */
+.container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  padding: 1.75rem;
+  border-radius: 0.75rem;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Títol */
+h1 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Formulari */
+form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+form input {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+form button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.55rem 1rem;
+  background: #2563eb;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #1d4ed8;
+}
+
+/* Llista */
+#llista-llibres {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada llibre */
+.llibre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.llibre:last-child {
+  border-bottom: none;
+}
+
+/* Text del llibre */
+.llibre span {
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Estat prestat */
+.prestat span {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* Botó eliminar */
+.llibre button {
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #b91c1c;
+  cursor: pointer;
+}
+
+.llibre button:hover {
+  text-decoration: underline;
+}
+
+/* Text informatiu */
+.info {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+}

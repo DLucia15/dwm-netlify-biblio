@@ -1,4 +1,4 @@
-// CONFIGURACIÓ FIREBASE (LA TEVA)
+// CONFIGURACIÓ FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyA_BNHv55OdW21ZH1Hw33CxfzSMXMAstmg",
   authDomain: "dwm-app-aea4.firebaseapp.com",
@@ -36,27 +36,42 @@ form.addEventListener("submit", async (e) => {
   autor.value = "";
 });
 
-// Escoltar canvis
-llibresRef.orderBy("creatEl", "asc").onSnapshot(snapshot => {
+// Escoltar canvis en temps real
+llibresRef.orderBy("creatEl", "asc").onSnapshot((snapshot) => {
   llista.innerHTML = "";
 
-  snapshot.forEach(doc => {
+  snapshot.forEach((doc) => {
     const llibre = doc.data();
+
+    // <li class="llibre">
     const li = document.createElement("li");
+    li.classList.add("llibre");
 
-    li.textContent = `"${llibre.titol}" – ${llibre.autor}`;
-    if (llibre.prestat) li.style.textDecoration = "line-through";
+    if (llibre.prestat) {
+      li.classList.add("prestat");
+    }
 
-    li.onclick = () => {
+    // Text del llibre
+    const span = document.createElement("span");
+    span.textContent = `"${llibre.titol}" – ${llibre.autor}`;
+
+    // Marcar com prestat / no prestat
+    span.addEventListener("click", () => {
       llibresRef.doc(doc.id).update({
         prestat: !llibre.prestat
       });
-    };
+    });
 
+    // Botó eliminar
     const btn = document.createElement("button");
-    btn.textContent = "🗑️";
-    btn.onclick = () => llibresRef.doc(doc.id).delete();
+    btn.textContent = "Eliminar";
 
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // evita conflictes de clic
+      llibresRef.doc(doc.id).delete();
+    });
+
+    li.appendChild(span);
     li.appendChild(btn);
     llista.appendChild(li);
   });
